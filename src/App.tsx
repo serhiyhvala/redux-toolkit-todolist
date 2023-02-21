@@ -1,6 +1,6 @@
 import styles from './App.module.scss'
-import Categories from "./components/categories/Categories";
-import TodoList from "./components/todoList/TodoList";
+import Categories from "@components/categories/Categories";
+import TodoList from "@components/todoList/TodoList";
 
 const App = () => {
   return (

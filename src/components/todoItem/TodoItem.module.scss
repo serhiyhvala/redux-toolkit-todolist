@@ -1,0 +1,15 @@
+.todo{
+  &_checkbox{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    transition: .3s all ease-in-out;
+    cursor: pointer;
+    input{
+      width: 15px;
+    }
+    &:hover{
+      color: #2D70FD;
+    }
+  }
+}
