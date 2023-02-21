@@ -19,7 +19,8 @@
     "paths": {
       "@components/*": ["./components/*"],
       "@store/*": ["./store/*"],
-      "@assets/*": ["./assets/*"]
+      "@assets/*": ["./assets/*"],
+      "@ui/*": ["./ui/*"]
     }
   },
   "include": ["src", "./"],
