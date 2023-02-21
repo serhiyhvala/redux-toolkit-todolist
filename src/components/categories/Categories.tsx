@@ -14,10 +14,11 @@ const Categories = () => {
     dispatch(addCategory(inputValue))
     setInputValue('')
   }
-  console.log(currentCategory, location.pathname)
   useEffect(() => {
-    const storageCategories = JSON.parse(localStorage.getItem('categories') || '')
-    storageCategories.length > 0 ? dispatch(getCategoriesFromLocalStorage(storageCategories)) : null
+    const storageCategories = JSON.parse(localStorage.getItem('categories') || '[]')
+    if(storageCategories?.length > 0){
+      dispatch(getCategoriesFromLocalStorage(storageCategories))
+    }
   }, [])
   useEffect(() => {
     localStorage.setItem('categories', JSON.stringify(categories))
