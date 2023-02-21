@@ -6,8 +6,8 @@ const App = () => {
   return (
       <div className={styles.main_container}>
         <div className={styles.container}>
-          <Categories />
-          <TodoList />
+          <Categories/>
+          <TodoList/>
         </div>
       </div>
   );

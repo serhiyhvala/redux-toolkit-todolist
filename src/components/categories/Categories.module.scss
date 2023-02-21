@@ -7,8 +7,13 @@
   ul > li{
     margin-bottom: 30px;
     font-size: 20px;
+    cursor: pointer;
+    transition: .3s all ease-in-out;
     &:first-child{
       font-weight: 600;
+    }
+    &:hover{
+      color: #2D70FD;
     }
   }
   &_button{

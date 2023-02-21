@@ -6,6 +6,7 @@
   span{
     font-size: 40px;
     font-weight: 600;
+    color: #11175E;
   }
 }
 
@@ -36,8 +37,13 @@
     display: flex;
     gap: 15px;
     margin-bottom: 15px;
+    transition: .3s all ease-in-out;
+    cursor: pointer;
     input{
-      background-color: #2D70FD;
+      width: 15px;
+    }
+    &:hover{
+      color: #2D70FD;
     }
   }
 }
