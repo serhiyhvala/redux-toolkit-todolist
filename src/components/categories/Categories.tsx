@@ -1,7 +1,7 @@
 import styles from './Categories.module.scss'
-import {FormEvent, useState} from "react";
+import {FormEvent, useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "@store/hooks";
-import {addCategory, changeCategory} from "@store/categories/categoriesSlice";
+import {addCategory, changeCategory, getCategoriesFromLocalStorage} from "@store/categories/categoriesSlice";
 import {Link} from "react-router-dom";
 import Button from "@ui/Button/Button";
 
@@ -14,6 +14,14 @@ const Categories = () => {
     dispatch(addCategory(inputValue))
     setInputValue('')
   }
+  console.log(currentCategory, location.pathname)
+  useEffect(() => {
+    const storageCategories = JSON.parse(localStorage.getItem('categories') || '')
+    storageCategories.length > 0 ? dispatch(getCategoriesFromLocalStorage(storageCategories)) : null
+  }, [])
+  useEffect(() => {
+    localStorage.setItem('categories', JSON.stringify(categories))
+  }, [categories])
   return (
       <div className={styles.categories}>
         <ul>
@@ -26,7 +34,8 @@ const Categories = () => {
           })}
         </ul>
         <form onSubmit={handleSubmitCategory}>
-          <input type="text" required={true} value={inputValue} onChange={e => setInputValue(e.target.value)} placeholder='Enter Your Category'/>
+          <input type="text" required={true} value={inputValue} onChange={e => setInputValue(e.target.value)}
+                 placeholder='Enter Your Category'/>
           <Button className='secondary'>+ New Category</Button>
         </form>
       </div>

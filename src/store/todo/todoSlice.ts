@@ -43,11 +43,14 @@ export const todoSlice = createSlice({
     },
     deleteAllTodos: (state) => {
       state.list = []
+    },
+    getTodosFromLocalStorage: (state, action:PayloadAction<TodoItemType[]>) => {
+      state.list = action.payload
     }
   }
 })
 
-export const {addTodo, toggleTodo, deleteSingleTodo, deleteAllTodos} = todoSlice.actions
+export const {addTodo, toggleTodo, deleteSingleTodo, deleteAllTodos, getTodosFromLocalStorage} = todoSlice.actions
 
 export default todoSlice.reducer
 

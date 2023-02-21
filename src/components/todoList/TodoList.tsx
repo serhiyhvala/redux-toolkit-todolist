@@ -2,7 +2,8 @@ import styles from './TodoList.module.scss'
 import TodoItem from "@components/todoItem/TodoItem";
 import TodoForm from "@components/todoForm/TodoForm";
 import {useAppDispatch, useAppSelector} from "@store/hooks";
-import {deleteAllTodos} from "@store/todo/todoSlice";
+import {deleteAllTodos, getTodosFromLocalStorage} from "@store/todo/todoSlice";
+import {useEffect} from "react";
 
 const TodoList = () => {
   const {list} = useAppSelector(state => state.todo)
@@ -12,6 +13,13 @@ const TodoList = () => {
   const dispatch = useAppDispatch()
   const totalCount = filteredList.length
   const categoryName = categories.find(item => item.shortName === currentCategory)?.shortName
+  useEffect(() => {
+    const storageTodo = JSON.parse(localStorage.getItem('todo') || '')
+    storageTodo.length ? dispatch(getTodosFromLocalStorage(storageTodo)) : null
+  }, [])
+  useEffect(() => {
+    localStorage.setItem('todo', JSON.stringify(list))
+  }, [list])
   return (
       <div className={styles.container}>
         <div className={styles.container_list}>

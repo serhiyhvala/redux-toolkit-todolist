@@ -13,7 +13,7 @@ const App = () => {
         <div className={styles.main_container}>
           <div className={styles.container}>
             <Routes>
-              <Route path='/' element={<Layout />}>
+              <Route path='/' element={<Layout/>}>
                 <Route path={route} element={<TodoList/>}/>
               </Route>
             </Routes>

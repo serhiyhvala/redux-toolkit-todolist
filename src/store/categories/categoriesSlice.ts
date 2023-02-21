@@ -35,10 +35,13 @@ export const categoriesSlice = createSlice({
     },
     changeCategory: (state, action:PayloadAction<string>) => {
       state.currentCategory = action.payload
+    },
+    getCategoriesFromLocalStorage: (state, action:PayloadAction<CategoriesType[]>) => {
+      state.categories = action.payload
     }
   }
 })
 
-export const {addCategory, changeCategory} = categoriesSlice.actions
+export const {addCategory, changeCategory, getCategoriesFromLocalStorage} = categoriesSlice.actions
 
 export default categoriesSlice.reducer
