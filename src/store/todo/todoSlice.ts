@@ -31,7 +31,7 @@ export const todoSlice = createSlice({
         id: uuidv4(),
         title: title,
         completed: false,
-        category: category
+        category: category.toLowerCase().replace(/ /g,'')
       }
       state.list.push(newTodo)
     },
