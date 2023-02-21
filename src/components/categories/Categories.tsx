@@ -19,8 +19,9 @@ const Categories = () => {
         <ul>
           {categories.map(item => {
             const isActiveCategory = currentCategory === item.shortName ? styles.activeItem : ''
-            return <Link to={item.shortName} onClick={() => dispatch(changeCategory(item.shortName))}>
-              <li key={item.id} className={isActiveCategory}>{item.title}</li>
+            const setRoute = item.shortName === 'all' ? '/' : item.shortName
+            return <Link to={setRoute} onClick={() => dispatch(changeCategory(item.shortName))} key={item.id}>
+              <li className={isActiveCategory}>{item.title}</li>
             </Link>
           })}
         </ul>
