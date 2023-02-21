@@ -2,6 +2,7 @@ import styles from "./TodoForm.module.scss";
 import {ChangeEvent, FormEvent, useState} from "react";
 import {useAppDispatch} from "@store/hooks";
 import {addTodo, PayloadType} from "@store/todo/todoSlice";
+import Button from "@ui/Button/Button";
 
 const TodoForm = () => {
   const initialInputField = {
@@ -24,7 +25,7 @@ const TodoForm = () => {
                onChange={handleChangeInputField}/>
         <input type="text" name='category' placeholder='Add Category' value={inputField.category}
                onChange={handleChangeInputField}/>
-        <button className={styles.todo_button}>Add Task</button>
+        <Button className='primary'>Add Todo</Button>
       </form>
   );
 };
