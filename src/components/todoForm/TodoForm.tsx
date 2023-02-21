@@ -16,7 +16,7 @@ const TodoForm = () => {
   }
   return (
       <form className={styles.todo_input} onSubmit={handleSubmitForm}>
-        <input type="text" placeholder='Add new list item' value={inputField} onChange={handleChangeInputField}/>
+        <input type="text" required={true} placeholder='Add new list item' value={inputField} onChange={handleChangeInputField}/>
         <button className={styles.todo_button}>Add Task</button>
       </form>
   );
