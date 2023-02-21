@@ -1,11 +1,13 @@
 import styles from "./TodoItem.module.scss";
+import {FC} from "react";
+import {TodoItemType} from "@store/todo/todoSlice";
 
 
-const TodoItem = () => {
+const TodoItem: FC<TodoItemType> = ({completed, title}) => {
   return (
       <label className={styles.todo_checkbox}>
-        <input type="checkbox"/>
-        My Todo
+        <input type="checkbox" checked={completed}/>
+        {title}
       </label>
   );
 };

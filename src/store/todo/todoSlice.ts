@@ -1,14 +1,14 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {v4 as uuidv4} from 'uuid'
 
-export type TodoItem = {
+export type TodoItemType = {
   id: string,
   title: string,
   completed: boolean
 }
 
 export type InitialStateType = {
-  list: TodoItem[]
+  list: TodoItemType[]
 }
 
 const initialState:InitialStateType = {
@@ -20,7 +20,7 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action:PayloadAction<string>) => {
-      const newTodo:TodoItem = {
+      const newTodo:TodoItemType = {
         id: uuidv4(),
         title: action.payload,
         completed: false
