@@ -1,4 +1,3 @@
-import {v4 as uuidv4} from "uuid";
 import styles from './Categories.module.scss'
 import {FormEvent, useState} from "react";
 import {useAppDispatch, useAppSelector} from "@store/hooks";
@@ -21,7 +20,7 @@ const Categories = () => {
           ))}
         </ul>
         <form onSubmit={handleSubmitCategory}>
-          <input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)}/>
+          <input type="text" required={true} value={inputValue} onChange={e => setInputValue(e.target.value)}/>
           <button className={styles.categories_button}>+ New Category</button>
         </form>
       </div>
