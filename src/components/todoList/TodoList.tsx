@@ -6,23 +6,27 @@ import {deleteAllTodos} from "@store/todo/todoSlice";
 
 const TodoList = () => {
   const {list} = useAppSelector(state => state.todo)
+  const {categories, currentCategory} = useAppSelector(state => state.categories)
+  const isCurrentCategoryAll = currentCategory === 'all'
+  const filteredList = list.filter(item => isCurrentCategoryAll ? item : item.category === currentCategory)
   const dispatch = useAppDispatch()
-  const totalCount = list.length
+  const totalCount = filteredList.length
+  const categoryName = categories.find(item => item.shortName === currentCategory)?.shortName
   return (
       <div className={styles.container}>
         <div className={styles.container_list}>
-          <span>TodoList</span>
-          <TodoForm />
-          {totalCount ? list.map((item) => (
+          {isCurrentCategoryAll ? <span>Todo List</span> : <span>{categoryName}</span>}
+          <TodoForm/>
+          {totalCount ? filteredList.map((item) => (
               <TodoItem key={item.id} {...item}/>
           )) : "You Don't Have Any Todos"}
         </div>
-          {totalCount ? (
-              <div className={styles.todo_footer}>
-                <span>Total Count: {totalCount}</span>
-                <span onClick={() => dispatch(deleteAllTodos())}>Clear All Tasks</span>
-              </div>
-          ) : null}
+        {totalCount > 0 && (
+            <div className={styles.todo_footer}>
+              <span>Total Count: {totalCount}</span>
+              {isCurrentCategoryAll && <span onClick={() => dispatch(deleteAllTodos())}>Clear All Tasks</span>}
+            </div>
+        )}
       </div>
   );
 };

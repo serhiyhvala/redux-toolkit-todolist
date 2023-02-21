@@ -5,10 +5,16 @@ export type TodoItemType = {
   id: string,
   title: string,
   completed: boolean
+  category: string
 }
 
 export type InitialStateType = {
   list: TodoItemType[]
+}
+
+export type PayloadType = {
+  title: string,
+  category: string
 }
 
 const initialState:InitialStateType = {
@@ -19,11 +25,13 @@ export const todoSlice = createSlice({
   name: 'todoSlice',
   initialState,
   reducers: {
-    addTodo: (state, action:PayloadAction<string>) => {
+    addTodo: (state, action:PayloadAction<PayloadType>) => {
+      const {title, category} = action.payload
       const newTodo:TodoItemType = {
         id: uuidv4(),
-        title: action.payload,
-        completed: false
+        title: title,
+        completed: false,
+        category: category
       }
       state.list.push(newTodo)
     },

@@ -1,15 +1,21 @@
 import styles from './App.module.scss'
-import Categories from "@components/categories/Categories";
 import TodoList from "@components/todoList/TodoList";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Layout from "./layouts/Layout";
 
 const App = () => {
   return (
-      <div className={styles.main_container}>
-        <div className={styles.container}>
-          <Categories/>
-          <TodoList/>
+      <BrowserRouter>
+        <div className={styles.main_container}>
+          <div className={styles.container}>
+            <Routes>
+              <Route path='/' element={<Layout />}>
+                <Route path=':category' element={<TodoList/>}/>
+              </Route>
+            </Routes>
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
   );
 };
 

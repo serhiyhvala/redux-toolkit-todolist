@@ -1,7 +1,8 @@
 import styles from './Categories.module.scss'
 import {FormEvent, useState} from "react";
 import {useAppDispatch, useAppSelector} from "@store/hooks";
-import {addCategory} from "@store/categories/categoriesSlice";
+import {addCategory, changeCategory} from "@store/categories/categoriesSlice";
+import {Link} from "react-router-dom";
 
 const Categories = () => {
   const [inputValue, setInputValue] = useState('')
@@ -16,7 +17,7 @@ const Categories = () => {
       <div className={styles.categories}>
         <ul>
           {categories.map(item => (
-              <li key={item.id}>{item.title}</li>
+              <Link to={item.shortName} onClick={() => dispatch(changeCategory(item.shortName))}><li key={item.id}>{item.title}</li></Link>
           ))}
         </ul>
         <form onSubmit={handleSubmitCategory}>
