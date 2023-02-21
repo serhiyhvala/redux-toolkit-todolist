@@ -1,0 +1,43 @@
+.container{
+  padding-left: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  span{
+    font-size: 40px;
+    font-weight: 600;
+  }
+}
+
+.todo{
+  &_input{
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    padding: 7px;
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 32px 0 55px 0;
+    input, input:focus{
+      border: hidden;
+      outline: none;
+      font-size: 15px;
+    }
+  }
+  &_button{
+    padding: 12px 24px;
+    background: #2D70FD;
+    color: #fff;
+    border-radius: 4px;
+  }
+  &_checkbox{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    input{
+      background-color: #2D70FD;
+    }
+  }
+}

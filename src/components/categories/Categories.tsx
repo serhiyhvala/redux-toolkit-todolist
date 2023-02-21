@@ -1,5 +1,6 @@
 import {v4 as uuidv4} from "uuid";
 import styles from './Categories.module.scss'
+import {useState} from "react";
 
 const Categories = () => {
   const listData = [
@@ -28,14 +29,21 @@ const Categories = () => {
       title: 'Sports'
     }
   ]
+  const [data, setData] = useState(listData)
+  const newTask = {
+    id: uuidv4(),
+    title: 'All Tasks'
+  }
   return (
       <div className={styles.categories}>
         <ul>
-          {listData.map(item => (
+          {data.map(item => (
               <li key={item.id}>{item.title}</li>
           ))}
         </ul>
-        <button className={styles.categories_button}>+ New Category</button>
+        <button className={styles.categories_button}
+                onClick={() => setData([...data, newTask])}
+        >+ New Category</button>
       </div>
   );
 };
