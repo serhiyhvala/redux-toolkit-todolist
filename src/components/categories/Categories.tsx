@@ -1,49 +1,29 @@
 import {v4 as uuidv4} from "uuid";
 import styles from './Categories.module.scss'
-import {useState} from "react";
+import {FormEvent, useState} from "react";
+import {useAppDispatch, useAppSelector} from "@store/hooks";
+import {addCategory} from "@store/categories/categoriesSlice";
 
 const Categories = () => {
-  const listData = [
-    {
-      id: uuidv4(),
-      title: 'All Tasks'
-    },
-    {
-      id: uuidv4(),
-      title: 'Favourites'
-    },
-    {
-      id: uuidv4(),
-      title: 'Groceries'
-    },
-    {
-      id: uuidv4(),
-      title: 'Work'
-    },
-    {
-      id: uuidv4(),
-      title: 'Study'
-    },
-    {
-      id: uuidv4(),
-      title: 'Sports'
-    }
-  ]
-  const [data, setData] = useState(listData)
-  const newTask = {
-    id: uuidv4(),
-    title: 'All Tasks'
+  const [inputValue, setInputValue] = useState('')
+  const {categories} = useAppSelector(state => state.categories)
+  const dispatch = useAppDispatch()
+  const handleSubmitCategory = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    dispatch(addCategory(inputValue))
+    setInputValue('')
   }
   return (
       <div className={styles.categories}>
         <ul>
-          {data.map(item => (
+          {categories.map(item => (
               <li key={item.id}>{item.title}</li>
           ))}
         </ul>
-        <button className={styles.categories_button}
-                onClick={() => setData([...data, newTask])}
-        >+ New Category</button>
+        <form onSubmit={handleSubmitCategory}>
+          <input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)}/>
+          <button className={styles.categories_button}>+ New Category</button>
+        </form>
       </div>
   );
 };
