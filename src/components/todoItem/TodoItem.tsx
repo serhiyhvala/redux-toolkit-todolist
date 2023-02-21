@@ -7,9 +7,10 @@ import clearTodo from '@assets/clearTodo.png'
 
 const TodoItem: FC<TodoItemType> = ({completed, title, id}) => {
   const dispatch = useAppDispatch()
+  const isCompleted = completed ? styles.todo_checkbox_completed : styles.todo_checkbox
   return (
       <div className={styles.todo_container}>
-        <label className={styles.todo_checkbox}>
+        <label className={isCompleted}>
           <input type="checkbox" checked={completed} onClick={() => dispatch(toggleTodo(id))}/>
           {title}
         </label>
