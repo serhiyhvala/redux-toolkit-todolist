@@ -2,7 +2,7 @@ import styles from './Categories.module.scss'
 import {FormEvent, useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "@store/hooks";
 import {addCategory, changeCategory, getCategoriesFromLocalStorage} from "@store/categories/categoriesSlice";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import Button from "@ui/Button/Button";
 
 const Categories = () => {
@@ -16,7 +16,7 @@ const Categories = () => {
   }
   useEffect(() => {
     const storageCategories = JSON.parse(localStorage.getItem('categories') || '[]')
-    if(storageCategories?.length > 0){
+    if (storageCategories?.length > 0) {
       dispatch(getCategoriesFromLocalStorage(storageCategories))
     }
   }, [])
@@ -29,9 +29,9 @@ const Categories = () => {
           {categories.map(item => {
             const isActiveCategory = currentCategory === item.shortName ? styles.activeItem : ''
             const setRoute = item.shortName === 'all' ? '/' : item.shortName
-            return <Link to={setRoute} onClick={() => dispatch(changeCategory(item.shortName))} key={item.id}>
+            return <NavLink to={setRoute} onClick={() => dispatch(changeCategory(item.shortName))} key={item.id}>
               <li className={isActiveCategory}>{item.title}</li>
-            </Link>
+            </NavLink>
           })}
         </ul>
         <form onSubmit={handleSubmitCategory}>

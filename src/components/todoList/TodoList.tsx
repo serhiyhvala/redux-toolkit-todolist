@@ -15,7 +15,7 @@ const TodoList = () => {
   const categoryName = categories.find(item => item.shortName === currentCategory)?.shortName
   useEffect(() => {
     const storageTodo = JSON.parse(localStorage.getItem('todo') || '[]')
-    if(storageTodo?.length > 0){
+    if (storageTodo?.length > 0) {
       dispatch(getTodosFromLocalStorage(storageTodo))
     }
   }, [])
